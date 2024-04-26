@@ -2,7 +2,9 @@
   "name": "unitestingtask",
   "version": "0.0.1",
   "description": "Unit testing task",
-  "scripts": {},
+  "scripts": {
+    "test": "TZ=CEST-2 jest --coverage"
+  },
   "dependencies": {
     "jest": "^29.7.0",
     "timezoned-date": "^3.0.2"

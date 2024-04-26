@@ -10,7 +10,6 @@
   }
 })(this, function (root) {
   "use strict";
-  console.log(root, this);
 
   /**
    * Converts `value` to string and pad it with leading zeroes
