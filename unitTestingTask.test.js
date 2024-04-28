@@ -2,7 +2,7 @@ const unitTestingTask = require("./unitTestingTask");
 const timezonedDate = require("timezoned-date");
 
 const testDate = new Date(1712754193330);
-const milisecondsDate = 1704326400000;
+const millisecondsDate = 1704326400000;
 describe("Test error handling of unitTestingTask", () => {
   test("should throw an error on formatter when format is not provided", () => {
     expect(() => {
@@ -31,20 +31,20 @@ describe("Test basic usage of unitTestingTask", () => {
   afterEach(() => {
     Date = originalDate;
   });
-  test("Should register new formater DayAndMonth and add it to current list of formaters", () => {
+  test("Should register new formatter DayAndMonth and add it to current list of formatters", () => {
     unitTestingTask.register("DayAndMonth", "dd:MMM");
 
     expect(unitTestingTask.formatters()).toContain("DayAndMonth");
   });
 
-  test("Should format in registered formated data as predefined ISODate", () => {
+  test("Should format in registered formatted data as predefined ISODate", () => {
     const formatedDate = unitTestingTask("ISODate", testDate);
 
     expect(formatedDate).toBe("2024-04-10");
   });
 
-  test("should use 1704326400000 (miliseconds) to create date and return formated date dd-MM-YY", () => {
-    const formattedDate = unitTestingTask("dd-MM-YY", milisecondsDate);
+  test("should use 1704326400000 (milliseconds) to create date and return formatted date dd-MM-YY", () => {
+    const formattedDate = unitTestingTask("dd-MM-YY", millisecondsDate);
 
     expect(formattedDate).toBe("04-01-24");
   });
@@ -61,14 +61,14 @@ describe("Test basic usage of unitTestingTask", () => {
     expect(formattedDate).toBe("12");
   });
 
-  test("should create new date for not pased date argmuent and return actual date", () => {
+  test("should create new date for not passed date argument and return actual date", () => {
     const expectValue = unitTestingTask("hh", new Date());
     const formattedDate = unitTestingTask("hh");
 
     expect(formattedDate).toBe(expectValue);
   });
 
-  test("should create date with time zone -04:00 and return format time zone signg with '-'", () => {
+  test("should create date with time zone -04:00 and return format time zone sign with '-'", () => {
     Date = timezonedDate.makeConstructor(-240);
     const expectValue = unitTestingTask(
       "ZZ",
@@ -82,7 +82,7 @@ describe("Test basic usage of unitTestingTask", () => {
   test("should get current lang as en", () => {
     const currentLang = unitTestingTask.lang();
 
-    expect(unitTestingTask.lang()).toBe("en");
+    expect(currentLang).toBe("en");
   });
 });
 
@@ -110,8 +110,8 @@ describe("Test format functions on date ", () => {
     [["ff", testDate], "330"],
     [["A", testDate], "PM"],
     [["a", testDate], "pm"],
-    [["A", milisecondsDate], "AM"],
-    [["a", milisecondsDate], "am"],
+    [["A", millisecondsDate], "AM"],
+    [["a", millisecondsDate], "am"],
     [["ZZ", testDate], "+0200"],
     [["Z", testDate], "+02:00"],
   ])(
